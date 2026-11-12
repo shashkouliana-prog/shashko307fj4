@@ -11,3 +11,21 @@
   list-style-type: none;
   padding: 0;
 }
+.task-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.task-item .title{ flex: 1; }
+.task-item .done{ text-decoration: line-through; color: #888; }
+.edit-input{ flex: 1; padding: 4px; }
+
+button{ padding: 4px 10px; cursor: pointer; }
+
+.filters{ margin: 10px 0; display: flex; gap: 6px; }
+.filters .active{ background: #2d6cdf; color: #fff; border: 1px solid #2d6cdf; }
+
+.stats{ margin: 10px 0; font-size: 0.9rem; color: #555; }

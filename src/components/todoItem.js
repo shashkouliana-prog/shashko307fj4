@@ -1,27 +1,33 @@
 import { useState } from 'react';
 
-function TodoItem({ task, index, onDelete, onEdit }) {
+function TodoItem({ task, onDelete, onEdit, onToggle }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [draft, setDraft] = useState(task);
+  const [draft, setDraft] = useState(task.title);
 
   const save = () => {
     if (draft.trim()) {
-      onEdit(index, draft.trim());
+      onEdit(task.id, draft.trim());
       setIsEditing(false);
     }
   };
 
   const cancel = () => {
-    setDraft(task);
+    setDraft(task.title);
     setIsEditing(false);
   };
 
   return (
-    <li style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+    <li className='task-item'>
+      <input
+        type="checkbox"
+        checked={task.completed}
+        onChange={() => onToggle(task.id)}
+      />
+
       {isEditing ? (
         <>
           <input
-            style={{ flex: 1 }}
+            className='edit-input'
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             autoFocus
@@ -31,9 +37,9 @@ function TodoItem({ task, index, onDelete, onEdit }) {
         </>
       ) : (
         <>
-          <span style={{ flex: 1 }}>{task}</span>
+          <span className={task.completed ? 'title done' : 'title'}>{task.title}</span>
           <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button onClick={() => onDelete(index)}>Delete</button>
+          <button onClick={() => onDelete(task.id)}>Delete</button>
         </>
       )}
     </li>
