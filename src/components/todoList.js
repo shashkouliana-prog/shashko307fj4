@@ -1,10 +1,12 @@
-function TodoList() {
+function TodoList({ tasks = [] }) {
+  const tasksList = tasks.map((task, index) => (
+    <li key={index}>{task}</li>
+  ));
+
   return (
     <div>
       <ul className='task-list'>
-        <li>Task 1</li>
-        <li>Task 2</li>
-        <li>Task 3</li>
+        {tasksList}
       </ul>
     </div>
   );
