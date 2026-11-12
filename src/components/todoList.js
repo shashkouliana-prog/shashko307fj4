@@ -1,13 +1,17 @@
 import TodoItem from './todoItem';
 
-function TodoList({ tasks = [], onDelete, onEdit }) {
-  const tasksList = tasks.map((task, index) => (
+function TodoList({ tasks = [], onDelete, onEdit, onToggle }) {
+  if (tasks.length === 0) {
+    return <p>Завдань немає</p>;
+  }
+
+  const tasksList = tasks.map((task) => (
     <TodoItem
-      key={index}
+      key={task.id}
       task={task}
-      index={index}
       onDelete={onDelete}
       onEdit={onEdit}
+      onToggle={onToggle}
     />
   ));
 
