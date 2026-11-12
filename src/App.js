@@ -1,8 +1,9 @@
 import './App.css';
 import TodoList from './components/todoList';
+import { useState } from 'react';
 
 function App() {
-  let tasks = ['Task 1', 'Task 2', 'Task 3'];
+  const [tasks, updateTasks] = useState(['Task 1', 'Task 2', 'Task 3']);
 
   return (
     <div className='container'>
