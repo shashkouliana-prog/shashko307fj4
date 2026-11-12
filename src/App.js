@@ -10,11 +10,15 @@ function App() {
     updateTasks((prev) => [...prev, newTask]);
   };
 
+  const removeTask = (indexToRemove) => {
+    updateTasks((prev) => prev.filter((_, i) => i !== indexToRemove));
+  };
+
   return (
     <div className='container'>
       <h2>Tasks list</h2>
       <UpdateList onAddTask={addTask} />
-      <TodoList tasks={tasks} />
+      <TodoList tasks={tasks} onDelete={removeTask} />
     </div>
   );
 }
