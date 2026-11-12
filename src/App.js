@@ -14,11 +14,17 @@ function App() {
     updateTasks((prev) => prev.filter((_, i) => i !== indexToRemove));
   };
 
+  const editTask = (indexToEdit, newTitle) => {
+    updateTasks((prev) =>
+      prev.map((task, i) => (i === indexToEdit ? newTitle : task))
+    );
+  };
+
   return (
     <div className='container'>
       <h2>Tasks list</h2>
       <UpdateList onAddTask={addTask} />
-      <TodoList tasks={tasks} onDelete={removeTask} />
+      <TodoList tasks={tasks} onDelete={removeTask} onEdit={editTask} />
     </div>
   );
 }
